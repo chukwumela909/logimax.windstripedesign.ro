@@ -5610,18 +5610,29 @@
 						<!-- user receipt button -->
 
 						<style>
+							.body {
+								font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+								display: flex;
+								justify-content: center;
+								align-items: center;
+								min-height: 100vh;
+								background-color: #f8f9fa;
+								margin: 0;
+								padding: 20px;
+							}
+
 							/* Receipt Styles */
 							#receipt-template {
-								display: none;
+								display: block;
 							}
 
 							.receipt {
 								max-width: 800px;
-								margin: 0 auto;
+								margin: 20 auto;
 								background: white;
 								padding: 40px;
-								box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 								position: relative;
+								box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 							}
 
 							.header {
@@ -5786,76 +5797,7 @@
 
 
 						<!-- Hidden receipt template for HTML2Canvas -->
-						<div id="receipt-template" class="receipt">
-							<div class="header">
-								<div class="company-info">
-									<img src="../images/logo/white-logo (1).png" alt="Company Logo" />
-									<div>support@fastfreight.com</div>
-								</div>
-							</div>
-							<div class="paid-stamp">
-								<span id="payment-status-text">PAID</span>
-							</div>
-							<div class="receipt-title">
-								<span>Receipt</span>
-							</div>
-							<dl class="details">
-								<dt>Currency</dt>
-								<dd>USD</dd>
-								<dt>Receipt Date</dt>
-								<dd id="receipt-date">25 Mar, 2023</dd>
-								<dt>Reference</dt>
-								<dd id="tracking-id-text">00001</dd>
-								<dt>Payment Method</dt>
-								<dd>Bank Transfer</dd>
-							</dl>
-							<table class="product-table">
-								<thead>
-									<tr>
-										<th>Product Item</th>
-										<th>Unit Price($)</th>
-										<th>Qty</th>
-										<th>Amount($)</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr>
-										<td id="content-name-text">PARCEL RECEIPT</td>
-										<td id="amount-paid-text">2,111.00</td>
-										<td>1</td>
-										<td id="total-amount-text">2,111.00</td>
-									</tr>
-								</tbody>
-							</table>
-							<div class="totals">
-								<div>
-									<span>Subtotal</span>
-									<span id="subtotal-text">2,111.00</span>
-								</div>
-								<div>
-									<span>Discount</span>
-									<span>- 0.0</span>
-								</div>
-								<div>
-									<span>VAT</span>
-									<span>0.0%</span>
-								</div>
-								<div class="total">
-									<span>Total</span>
-									<span id="final-total-text">2,111.00</span>
-								</div>
-							</div>
-							<div class="comments">
-								<h2>ADDITIONAL COMMENTS</h2>
-								<p>Receiver will pay sum of $<span id="final-total-text"></span> for the delivery fees
-									when the
-									package is already in
-									Philippines</p>
-							</div>
-							<div class="footer">
-								FAST DELIVERY
-							</div>
-						</div>
+
 
 						<!-- Include jsPDF and html2canvas libraries -->
 						<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
@@ -6030,7 +5972,7 @@
 
 			// Use html2canvas to capture the receipt as an image
 			html2canvas(receiptTemplate, {
-				scale: 1, // Higher scale for better quality
+				scale: 2, // Higher scale for better quality
 				useCORS: true, // Enable CORS for images
 			}).then(canvas => {
 				// Hide the receipt template again
@@ -9851,6 +9793,72 @@
 			background-color: #2980b9;
 		}
 	</style>
+	<div class="body">
+		<div id="receipt-template" class="receipt">
+			<div class="header">
+				<div class="company-info">
+					<img src="../images/logo/white-logo (1).png" alt="Company Logo" />
+					<div>support@fastfreight.com</div>
+				</div>
+			</div>
+			<div class="paid-stamp">
+				<span id="payment-status-text">PAID</span>
+			</div>
+			<div class="receipt-title">
+				<span>Receipt</span>
+			</div>
+			<dl class="details">
+				<dt>Currency</dt>
+				<dd>USD</dd>
+				<dt>Receipt Date</dt>
+				<dd id="receipt-date">25 Mar, 2023</dd>
+				<dt>Reference</dt>
+				<dd id="tracking-id-text">00001</dd>
+				<dt>Payment Method</dt>
+				<dd>Bank Transfer</dd>
+			</dl>
+			<table class="product-table">
+				<thead>
+					<tr>
+						<th>Product Item</th>
+						<th>Unit Price($)</th>
+						<th>Qty</th>
+						<th>Amount($)</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td id="content-name-text">PARCEL RECEIPT</td>
+						<td id="amount-paid-text">2,111.00</td>
+						<td>1</td>
+						<td id="total-amount-text">2,111.00</td>
+					</tr>
+				</tbody>
+			</table>
+			<div class="totals">
+				<div>
+					<span>Subtotal</span>
+					<span id="subtotal-text">2,111.00</span>
+				</div>
+				<div>
+					<span>Discount</span>
+					<span>- 0.0</span>
+				</div>
+				<div>
+					<span>VAT</span>
+					<span>0.0%</span>
+				</div>
+				<div class="total">
+					<span>Total</span>
+					<span id="final-total-text">2,111.00</span>
+				</div>
+			</div>
+
+			<div class="footer">
+				FAST FREIGHT DELIVERY
+			</div>
+		</div>
+	</div>
 
 	<script>
 		// Add this JavaScript in a separate file or script tag
@@ -9928,6 +9936,7 @@
 	<a href="#" class="sp-scroll-up" aria-label="Scroll Up"><span class="fas fa-angle-up" aria-hidden="true"></span></a>
 	<script data-cfasync="false" src="../cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script>
 </body>
+
 
 <!-- Mirrored from logimax.windstripedesign.ro/pages/pricing by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 30 Jan 2025 16:03:40 GMT -->
 
