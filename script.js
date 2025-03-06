@@ -1,7 +1,7 @@
 function showLoader() {
   document.getElementById("loader").style.display = "flex";
 }
-
+ 
 // Hide the loader
 function hideLoader() {
   document.getElementById("loader").style.display = "none";
